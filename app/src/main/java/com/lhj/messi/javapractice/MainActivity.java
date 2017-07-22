@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.lhj.messi.javapractice.sort.BinarySearch;
 import com.lhj.messi.javapractice.sort.QuickSorted;
+import com.lhj.messi.javapractice.thread.DeadLock;
 import com.lhj.messi.javapractice.util.Logger;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,11 +18,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnClick(View view) {
-        int[] arrays = {33,1,22,5,7,32,11,88,102};
-        QuickSorted.getQuickValue(arrays);
-        int indexFromArrays = BinarySearch.getIndexFromArrays(arrays, 33);
+        DeadLock.postDeadLock();
+//        int[] arrays = {33,1,22,5,7,32,11,88,102};
+//        QuickSorted.getQuickValue(arrays);
+//        int indexFromArrays = BinarySearch.getIndexFromArrays(arrays, 33);
 //        int indexFromArrays = BinarySearch.getIndexFromArraysRecursion(arrays, 33);
-        Logger.d("index-->"+indexFromArrays);
+//        Logger.d("index-->"+indexFromArrays);
 
 //        SelectSorted.getSelectSort(arrays);
 //        MaoPaoSorted.sortNumberMaoPao(arrays);

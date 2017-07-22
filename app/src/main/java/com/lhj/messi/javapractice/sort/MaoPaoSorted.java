@@ -1,5 +1,7 @@
 package com.lhj.messi.sorted;
 
+import com.lhj.messi.javapractice.util.Print;
+
 /**
  * Created by messi on 2017/7/20.
  */
