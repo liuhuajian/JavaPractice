@@ -2,8 +2,6 @@ package com.lhj.messi.javapractice.thread;
 
 import com.lhj.messi.javapractice.util.Logger;
 
-import java.io.OutputStream;
-
 /**
  * Created by messi on 2017/7/22.
  */
@@ -25,6 +23,7 @@ public class ThreadCommunication {
     private class Student {
         public String name;
         public String sex;
+        public boolean flag;
     }
 
     private class Input implements Runnable {
@@ -39,6 +38,13 @@ public class ThreadCommunication {
             int x = 0;
             while (flag) {
                 synchronized (student){
+                    if (student.flag) {
+                        try {
+                            student.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     if (x == 0) {
                         student.name = "刘华健";
                         student.sex = "man";
@@ -47,6 +53,8 @@ public class ThreadCommunication {
                         student.sex = "woman";
                     }
                     x = (x + 1) % 2;
+                    student.flag = true;
+                    student.notify();
                 }
 
             }
@@ -65,7 +73,16 @@ public class ThreadCommunication {
         public void run() {
             while (flag) {
                 synchronized (student){
+                    if (!student.flag){
+                        try {
+                            student.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     Logger.d("name--->" + student.name + "--sex-->" + student.sex);
+                    student.flag = false;
+                    student.notify();
                 }
 
             }

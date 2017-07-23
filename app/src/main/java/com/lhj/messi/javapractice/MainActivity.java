@@ -7,12 +7,16 @@ import android.view.View;
 import com.lhj.messi.javapractice.sort.BinarySearch;
 import com.lhj.messi.javapractice.sort.QuickSorted;
 import com.lhj.messi.javapractice.thread.DeadLock;
+import com.lhj.messi.javapractice.thread.ProductCustomerApp;
+import com.lhj.messi.javapractice.thread.ProductCustomerLockApp;
 import com.lhj.messi.javapractice.thread.ThreadCommunication;
 import com.lhj.messi.javapractice.util.Logger;
 
 public class MainActivity extends AppCompatActivity {
 
     private ThreadCommunication threadCommunication;
+    private ProductCustomerApp productCustomerApp;
+    private ProductCustomerLockApp productCustomerLockApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +25,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnClick(View view) {
-        threadCommunication = new ThreadCommunication();
-        threadCommunication.displayThreadCommunication();
-//        DeadLock.postDeadLock();
+        productCustomerLockApp = new ProductCustomerLockApp();
+        productCustomerLockApp.setProductWithCustomer();
+//        productCustomerApp = new ProductCustomerApp();
+//        productCustomerApp.setProductWithCustomer();
+//        threadCommunication = new ThreadCommunication();
+//        threadCommunication.displayThreadCommunication();
+//        new DeadLock().postDeadLock();
 //        int[] arrays = {33,1,22,5,7,32,11,88,102};
 //        QuickSorted.getQuickValue(arrays);
 //        int indexFromArrays = BinarySearch.getIndexFromArrays(arrays, 33);
@@ -35,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnClickStop(View view) {
-        threadCommunication.flag = false;
+        productCustomerLockApp.instantFlag = false;
+//        productCustomerApp.instantFlag = false;
+//        threadCommunication.flag = false;
     }
 }
